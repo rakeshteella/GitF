@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Compact Responsive HTML Demo</title>
+  <meta name="description" content="A compact single-file responsive landing page with simple interactivity." />
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#4f9ef3;
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071027 0%, var(--bg) 100%);color:#e6eef8}
+    .container{max-width:1100px;margin:36px auto;padding:24px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#4f9ef3,#7bd389);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px;align-items:start}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.6);}
+    .h1{font-size:28px;margin:0 0 8px}
+    p.lead{color:var(--muted);margin-top:0}
+
+    .features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+    .feature{background:var(--glass);padding:12px;border-radius:10px}
+    .small{font-size:13px;color:var(--muted)}
+
+    form input, form textarea{width:100%;padding:10px;margin-top:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);border-radius:8px;color:inherit}
+    form button{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),#6bd3ff);color:#04243a;font-weight:600;cursor:pointer}
+
+    .aside{position:relative}
+    .card.aside-card{padding:18px}
+    .stat{display:flex;align-items:center;justify-content:space-between;margin:12px 0}
+    .stat .num{font-weight:700;font-size:20px}
+
+    footer{margin-top:34px;color:var(--muted);font-size:13px;text-align:center}
+
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr}
+      nav a{margin-left:10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">LD</div>
+        <div>
+          <div style="font-weight:700">Landing Demo</div>
+          <div class="small">Single-file HTML example</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <section class="card">
+        <h1 class="h1">Beautiful, lightweight HTML starter</h1>
+        <p class="lead">A compact single-file template that demonstrates responsive layout, simple components, and a tiny bit of JavaScript — drop it in and customize.</p>
+
+        <div class="features" id="features">
+          <div class="feature">
+            <strong>Responsive</strong>
+            <div class="small">Works from mobile to desktop without external frameworks.</div>
+          </div>
+          <div class="feature">
+            <strong>Accessible</strong>
+            <div class="small">Semantic markup and keyboard-focusable controls.</div>
+          </div>
+          <div class="feature">
+            <strong>Interactive</strong>
+            <div class="small">Form validation + theme toggle implemented in 20 lines of JS.</div>
+          </div>
+          <div class="feature">
+            <strong>Compact</strong>
+            <div class="small">No build step — edit and open the file in any browser.</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:16px">Try the small contact form</h3>
+        <form id="contact" class="small" aria-label="Contact form">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Say hi..." required></textarea>
+          <button type="submit">Send message</button>
+          <div id="formStatus" role="status" aria-live="polite" style="margin-top:10px"></div>
+        </form>
+      </section>
+
+      <aside class="aside">
+        <div class="card aside-card">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-weight:700">Get started</div>
+              <div class="small">Two quick actions</div>
+            </div>
+            <div id="themeToggle" style="cursor:pointer;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);">Toggle</div>
+          </div>
+
+          <div class="stat">
+            <div>
+              <div class="small">Users</div>
+              <div class="num">1,248</div>
+            </div>
+            <div>
+              <div class="small">Uptime</div>
+              <div class="num">99.98%</div>
+            </div>
+          </div>
+
+          <div style="margin-top:8px;color:var(--muted);font-size:13px">Copy the file and open it locally or drop on any static host. No dependencies.</div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      Built with care • &copy; <span id="year"></span> • <span class="small">Edit this file to fit your project</span>
+    </footer>
+  </div>
+
+  <script>
+    // small JS: theme toggle + form handling
+    (function(){
+      const themeToggle = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      const status = document.getElementById('formStatus');
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      themeToggle.addEventListener('click', ()=>{
+        if(root.style.getPropertyValue('--bg') === '#ffffff'){
+          // switch to dark
+          root.style.setProperty('--bg', '#0f1724');
+          root.style.setProperty('--card', '#0b1220');
+          root.style.setProperty('color-scheme','dark');
+        } else {
+          // light
+          root.style.setProperty('--bg', '#ffffff');
+          root.style.setProperty('--card', '#f7fafc');
+          root.style.setProperty('color-scheme','light');
+          // tweak body color for light mode
+          document.body.style.color = '#04243a';
+        }
+      });
+
+      // trivial form handler (no network) that validates and shows a message
+      const form = document.getElementById('contact');
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        if(!name || !email || !message){
+          status.textContent = 'Please complete all fields.';
+          return;
+        }
+        // naive email check
+        if(!/^[^@]+@[^@]+\.[^@]+$/.test(email)){
+          status.textContent = 'Please enter a valid email address.';
+          return;
+        }
+        status.textContent = 'Thanks — message captured locally (this demo does not send emails).';
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
